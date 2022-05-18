@@ -121,26 +121,24 @@ void setupPwm_3(void)
 	TIM2->CCER |= TIM_CCER_CC3E;
 }
 
-/**
- * #error output is allway low...
- */
+
 void setupPwm_4(void)
 {
-	//PA11
+	//PB2
 	/* clock gpio */
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
 
-	GPIOA->MODER &= ~GPIO_MODER_MODE11_0;
-	GPIOA->MODER |= GPIO_MODER_MODE11_1;
+	GPIOB->MODER &= ~GPIO_MODER_MODE2_0;
+	GPIOB->MODER |= GPIO_MODER_MODE2_1;
 
 	/* pin AF 1 */
-	GPIOA->AFR[1] |= GPIO_AFRH_AFRH4_0;
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFRH4_1;
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFRH4_2;
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFRH4_3;
+	GPIOB->AFR[0] |= GPIO_AFRL_AFRL2_0;
+	GPIOB->AFR[0] &= ~GPIO_AFRL_AFRL2_1;
+	GPIOB->AFR[0] &= ~GPIO_AFRL_AFRL2_2;
+	GPIOB->AFR[0] &= ~GPIO_AFRL_AFRL2_3;
 
 	/* output type push pull */
-	GPIOA->OTYPER &= ~GPIO_OTYPER_OT11_Msk;
+	GPIOB->OTYPER &= ~GPIO_OTYPER_OT2_Msk;
 
 	/* clock periphery */
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
